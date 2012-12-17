@@ -1,0 +1,100 @@
+   end
+  def self.create_from_log_file(file)
+    s3log = File.open(file).each do |line|
+    line_match = S3_LINE_REGEXP.match(line)# get the matchdata
+    captures = Hash[ line_match.names.zip( line_match.captures ) ]# convert the matchdata to a hash key value pairs (both strings)
+    validate_log_file(captures["timestamp"])# validate file is unique
+    if captures["http_status"] != 200 next # figure out if API request was a http 200
+    current_account = extract_account_id(captures["request_path"])# extract account id and find that account
+    account_log = S3Log.new # instantiate a new S3Log instance
+    account_log.account_id = Account.find_by_id(current_account) # assign the S3Log object its account id
+    account_log.total_bytes = calculate_total_bytes_for_file(captures["bytes_sent"])# assign the log bytes to that accounts total for the file
+    account_log.total_requests = calculate_total_requests_for_file(acount_log.account_id)# calculate total requests for that account on the file
+    account_log.date = Date.parse(captures["timestamp"])
+  def validate_log_file(timestamp)
+    exit if S3Log.find_by_date(timestamp) == true
+  def extract_account_id(string)
+    match_object = string.match(/\d+/)
+    string = match_object.to_s
+    account_id = string.to_i
+  def calculate_total_bytes_for_file(bytes_sent)
+    @@account_bytes << bytes_sent.to_i
+    total_bytes_count = @@account_bytes.inject{|sum,x| sum + x }
+  def calculate_total_requests_for_file(log)
+    @@total_requests += 1
+class DOg
+def initialize(args = nil)
+class Dog
+@@traits = []
+def initialize(name = nil)
+@name = name
+Dog.new
+_.traits
+_
+_.traits = "funny"
+10/5
+10/4
+10/5.is_true?
+def has_pair(hash, key, value)
+      if k == key && v = value
+      else
+      return false
+a = {"account_id" => 6}
+a
+has_pair(a, "account_id", 6)
+has_pair(a, "account_id", 7)
+has_pair(a, "account_id", 0)
+has_pair(a, "account", 0)
+def has_key_value_pair?(hash, key, value)
+        elsif v = value
+        end
+hash = {"account_id" => 6}
+        elsif v == value
+has_key_value_pair?(hash, "account_id", 5)
+has_key_value_pair?(hash, "account_id", 3)
+  def has_key_value_pair?(hash, key, value)
+    hash.each do |k, v|
+      if k == key
+        and v == value
+      return true
+        else
+          return false
+      end
+    end
+  end
+[1, 2, 3, 4, 5]
+_.each do |number|
+if number == 2
+_.delete(number)
+"string".to_a
+"string".inject(-1) {|x| x+y}
+"string".reverse
+[1, 2, 3]
+_.size
+array = [1, 2, 3, 4]
+array[1] + array[2]
+array
+last_number = array.size
+array[last_number]
+last_number
+array[last_number.to_i]
+array[last_number - 1]
+600851475143/100
+600851475143/100.00
+100 % 10
+600851475143 % 100.00
+600851475143 % 100.
+0
+600851475143 % 100
+n = 10
+(1..(n - 1)).each do |number|
+puts number
+end
+{:key => "value"}
+{:key => "value", :key2 => "value}
+ENV = {:key => "value", :key2 => "value}
+ENV = {:key => "value", :key2 => "value"}
+ENV
+ENV[0]
+ENV[:key]
+exit
